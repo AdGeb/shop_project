@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div th:replace="fragments/header">HEADER</div>
+    <br/>
+    <div class="container">
+        <div class="row mt-5 p-3">
+            <div class="col-xl-8 offset-xl-2">
+                <form th:action="@{/producer/add}" method="post" th:object="${producer}" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="h2" for="name">Name</label>
+                        <input id="name" type="text" class="form-control" th:field="*{name}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="h2" for="country">Country</label>
+                        <input id="country" type="text" class="form-control" th:field="*{country}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="h2" for="email">Email</label>
+                        <input id="email" type="text" class="form-control" th:field="*{email}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="h2" for="photo">Photo</label>
+                        <input id="photo" type="file" class="form-control" accept="image/*" th:field="*{multipartFile}"/>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-success btn-lg">Add</button>
+                        <button type="reset" class="btn btn-outline-danger btn-lg">Reset</button>
+                        <a class="btn btn-outline-primary btn-lg" href="/">Main</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+* {
+    margin: 100px auto;
+}
+
+.my-text {
+    font-size: 20px;
+    color: green;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px;
+}
