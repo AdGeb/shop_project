@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/4.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
 </head>
 <body>
     <div th:replace="fragments/header">HEADER</div>
@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row mt-5 p-3">
             <div class="col-xl-8 offset-xl-2">
-                <form th:action="@{/producer/add}" method="post" th:object="${producer}" enctype="multipart/form-data">
+                <form th:action="@{/producers/add}" method="post" th:object="${producer}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="h2" for="name">Name</label>
                         <input id="name" type="text" class="form-control" th:field="*{name}"/>
@@ -39,6 +39,6 @@
     </div>
 
     <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </body>
 </html>

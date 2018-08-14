@@ -26,6 +26,11 @@ public class FileManager {
 
     public static String addFileToResources(MultipartFile multipartFile) {
         try {
+
+            if (multipartFile == null || multipartFile.getBytes().length == 0) {
+                throw new IllegalArgumentException("MULTIPART EXCEPTION");
+            }
+
             String catalogPath = getCatalogPath();
             String filename = createFilename(multipartFile);
             String fullFilename = catalogPath + filename;
@@ -34,6 +39,33 @@ public class FileManager {
         } catch (Exception e) {
             e.printStackTrace();
             throw new MyException("ADD FILE EXCEPTION", LocalDateTime.now());
+        }
+    }
+
+    public static void updateFileInResources(MultipartFile multipartFile, String filename) {
+        try {
+
+            if (multipartFile == null || multipartFile.getBytes().length == 0) {
+                return;
+            }
+
+            String catalogPath = getCatalogPath();
+            String fullFilename = catalogPath + filename;
+            FileCopyUtils.copy(multipartFile.getBytes(), new File(fullFilename));
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MyException("UPDATE FILE EXCEPTION", LocalDateTime.now());
+        }
+    }
+
+    public static void removeFileFromResources(String filename) {
+        try {
+            String catalogPath = getCatalogPath();
+            String fullFilename = catalogPath + filename;
+            new File(fullFilename).delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new MyException("REMOVE FILE EXCEPTION", LocalDateTime.now());
         }
     }
 }
