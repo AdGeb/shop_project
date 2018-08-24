@@ -6,37 +6,55 @@
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
 </head>
 <body>
-<div th:replace="fragments/header">HEADER</div>
-<br/>
-<div class="container">
-    <div class="row mt-5 p-3">
-        <div class="col-xl-8 offset-xl-2">
-            <form th:action="@{/products/add}" method="post" th:object="${product}" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label class="h2" for="name">Name</label>
-                    <input id="name" type="text" class="form-control" th:field="*{name}"/>
-                </div>
-                <div class="form-group">
-                    <label class="h2" for="category">Category</label>
-                    <select id="category" th:field="*{category}">
-                        <option th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="h2" for="producer">Category</label>
-                    <select id="producer" th:field="*{producerDto.id}">
-                        <option th:each="p : ${producers}" th:value="${p.id}" th:text="${p.name}"></option>
-                    </select>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-success btn-lg">Add</button>
-                    <button type="reset" class="btn btn-outline-danger btn-lg">Reset</button>
-                    <a class="btn btn-outline-primary btn-lg" href="/">Main</a>
-                </div>
-            </form>
+    <div th:replace="fragments/header">HEADER</div>
+    <br/>
+    <div class="container">
+     <div class="row mt-5 p-3">
+            <div class="col-xl-8 offset-xl-2">
+             <form th:action="@{/products/add}" method="post" th:object="${product}" enctype="multipart/form-data">
+                  <div class="form-group">
+                     <label class="h2" for="name">Name</label>
+                      <input id="name" type="text" class="form-control" th:field="*{name}"/>
+                  </div>
+                 <div class="form-group">
+                     <label class="h2" for="photo">Photo</label>
+                     <input id="photo" type="file" class="form-control" accept="image/*" th:field="*{multipartFile}"/>
+                 </div>
+                 <div class="form-group">
+                     <label class="h2" for="price">Price</label>
+                     <input id="price" type="text" class="form-control" th:field="*{price}"/>
+                 </div>
+                 <div class="form-group">
+                     <label class="h2" for="release">Release</label>
+                     <input id="release" type="text" class="form-control" th:field="*{release}"/>
+                 </div>
+                  <div class="form-group">
+                        <label class="h2" for="category">Category</label>
+                       <select id="category" th:field="*{category}">
+                           <option th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
+                        </select>
+                    </div>
+                  <div class="form-group">
+                       <label class="h2" for="producer">Producer</label>
+                       <select id="producer" th:field="*{producerDto.id}">
+                           <option th:each="p : ${producers}" th:value="${p.id}" th:text="${p.name}"></option>
+                       </select>
+                   </div>
+                 <div class="form-group">
+                     <label class="h2" for="services">Services</label>
+                     <select id="services" multiple th:field="*{services}">
+                         <option th:each="s : ${services}" th:value="${s}" th:text="${s}"></option>
+                     </select>
+                 </div>
+                   <div>
+                       <button type="submit" class="btn btn-success btn-lg">Add</button>
+                      <button type="reset" class="btn btn-outline-danger btn-lg">Reset</button>
+                      <a class="btn btn-outline-primary btn-lg" href="/">Main</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 <script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
 <script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>

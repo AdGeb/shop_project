@@ -18,12 +18,11 @@ import java.util.Set;
 public class ProductDto {
     private Long id;
     private String name;
-    private String surname;
     private BigDecimal price;
     private Category category;
     private Set<Service> services;
     private LocalDate release;
     private ProducerDto producerDto;
     private String photoName;
-    private MultipartFile mulitpartFile;
+    private MultipartFile multipartFile;
 }
