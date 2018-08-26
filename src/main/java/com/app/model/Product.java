@@ -11,7 +11,9 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
+@EqualsAndHashCode
 @Table(name = "products")
 @Entity
 public class Product {
@@ -33,23 +35,4 @@ public class Product {
     @JoinColumn(name = "producer_id")
     private Producer producer;
     private String photoName;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(price, product.price) &&
-                Objects.equals(releaseDate, product.releaseDate) &&
-                category == product.category &&
-                Objects.equals(producer, product.producer) &&
-                Objects.equals(photoName, product.photoName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, releaseDate, category, producer, photoName);
-    }
 }

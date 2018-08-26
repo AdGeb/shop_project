@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:replace="fragments/header">HEADER</div>
+<br/>
+<div class="container">
+    <div class="row mt-5 p-3">
+        <div class="col-xl-8 offset-xl-2">
+            <ul class="list-unstyled">
+                <li th:each="p : ${products}" class="my-3">
+                    <div class="media">
+                        <img class="align-self-center mr-3" th:src="@{/img/{filename}(filename=${p.photoName})}" alt="">
+                        <div class="media-body">
+                            <h2 class="mt-0" th:text="${p.name}"></h2>
+                            <h3 class="mt-0" th:text="${p.price}"></h3>
+                            <h3 class="mt-0" th:text="${p.release}"></h3>
+                            <h3 class="mt-0" th:text="${p.category}"></h3>
+                            <h3 class="mt-0" th:text="${p.services}"></h3>
+                            <h3 class="mt-0" th:text="${p.producerDto.name}"></h3>
+                            <p>Opis produktu, bla bla bla</p>
+                            <div class="mt-2">
+                                <a th:href="@{/products/edit/{id}(id=${p.id})}" class="btn btn-success btn-lg mr-2">EDIT</a>
+                                <a th:href="@{/products/details/{id}(id=${p.id})}" class="btn btn-outline-success btn-lg mr-2">DETAILS</a>
+                                <form th:action="@{/products/remove}" method="post" style="display: inline">
+                                    <input type="text" name="id" th:value="${p.id}" readonly="readonly" hidden="hidden" />
+                                    <button class="btn btn-danger btn-lg" type="submit">REMOVE</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5 p-3">
+        <a class="btn btn-success btn-lg" href="/products/add">ADD NEW PRODUCT</a>
+    </div>
+</div>
+
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
