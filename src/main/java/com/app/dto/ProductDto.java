@@ -3,6 +3,7 @@ package com.app.dto;
 import com.app.model.Category;
 import com.app.model.Service;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ public class ProductDto {
     private BigDecimal price;
     private Category category;
     private Set<Service> services;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate release;
     private ProducerDto producerDto;
     private String photoName;

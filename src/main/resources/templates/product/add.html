@@ -26,7 +26,7 @@
                  </div>
                  <div class="form-group">
                      <label class="h2" for="release">Release</label>
-                     <input id="release" type="text" class="form-control" th:field="*{release}"/>
+                     <input id="release" type="date"  class="form-control" th:field="*{release}"/>
                  </div>
                   <div class="form-group">
                         <label class="h2" for="category">Category</label>
@@ -42,9 +42,12 @@
                    </div>
                  <div class="form-group">
                      <label class="h2" for="services">Services</label>
-                     <select id="services" multiple th:field="*{services}">
-                         <option th:each="s : ${services}" th:value="${s}" th:text="${s}"></option>
-                     </select>
+                     <ul id="services" class="list-inline">
+                         <li th:each="s : ${services}" class="list-inline-item mr-3">
+                             <input type="checkbox" th:field="*{services}" th:value="${s}" />
+                             <label th:text="${s}"></label>
+                         </li>
+                     </ul>
                  </div>
                    <div>
                        <button type="submit" class="btn btn-success btn-lg">Add</button>

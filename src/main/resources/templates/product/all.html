@@ -8,13 +8,13 @@
 <body>
 <div th:replace="fragments/header">HEADER</div>
 <br/>
-<div class="container">
+<div class="container" th:class="float-left">
     <div class="row mt-5 p-3">
         <div class="col-xl-8 offset-xl-2">
             <ul class="list-unstyled">
                 <li th:each="p : ${products}" class="my-3">
                     <div class="media">
-                        <img class="align-self-center mr-3" th:src="@{/img/{filename}(filename=${p.photoName})}" alt="">
+                        <img class="align-self-center" th:src="@{/img/{filename}(filename=${p.photoName})}" alt=""  >
                         <div class="media-body">
                             <h2 class="mt-0" th:text="${p.name}"></h2>
                             <h3 class="mt-0" th:text="${p.price}"></h3>

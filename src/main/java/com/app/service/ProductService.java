@@ -14,19 +14,18 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Transactional
 @Service
+@Transactional
 public class ProductService {
-
-    @Autowired
-    private EntityManager entityManager;
     private ProductRepository productRepository;
     private ModelMapper modelMapper;
     private ProducerService producerService;
+
     public ProductService(final ProductRepository productRepository, final ModelMapper modelMapper, final ProducerService producerService) {
         this.productRepository = productRepository;
         this.modelMapper = modelMapper;
@@ -39,8 +38,8 @@ public class ProductService {
 
     public void addOrUpdate(final ProductDto productDto) {
         Product product = modelMapper.fromProductDtoToProduct(productDto);
-        Producer producer1 = entityManager.find(Producer.class, productDto.getProducerDto().getId());
-        product.setProducer(producer1);
+        //Producer producer1 = entityManager.find(Producer.class, productDto.getProducerDto().getId());
+        //product.setProducer(producer1);
         productRepository.save(product);
     }
 

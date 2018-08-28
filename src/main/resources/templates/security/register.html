@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:replace="fragments/header">HEADER</div>
+<br/>
+<div class="container">
+    <div class="row mt-5 p-3">
+        <div class="col-xl-8 offset-xl-2">
+            <form th:action="@{/security/register}" method="post" th:object="${user}">
+                <div class="form-group">
+                    <label class="h2" for="userName">Username</label>
+                    <input id="userName" type="text" class="form-control" th:field="*{userName}"/>
+                </div>
+                <div class="form-group">
+                    <label class="h2" for="password">password</label>
+                    <input id="password" type="text" class="form-control" th:field="*{password}"/>
+                </div>
+                <div class="form-group">
+                    <label class="h2" for="passwordConfirmation">password confirmation</label>
+                    <input id="passwordConfirmation" type="text" class="form-control" th:field="*{passwordConfirmation}"/>
+                </div>
+                <div class="form-group">
+                    <label class="h2" for="role">Roles</label>
+                    <ul id="role" class="list-inline">
+                        <li th:each="r : ${role}" class="list-inline-item mr-3">
+                            <input type="checkbox" th:field="*{role}" th:value="${r}" />
+                            <label th:text="${r}"></label>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-success btn-lg">Add</button>
+                    <button type="reset" class="btn btn-outline-danger btn-lg">Reset</button>
+                    <a class="btn btn-outline-primary btn-lg" href="/">Main</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

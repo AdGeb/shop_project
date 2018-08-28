@@ -27,6 +27,6 @@ public class Producer {
     private String country;
     private String email;
     private String photoName;
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "producer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "producer", fetch = FetchType.EAGER)
     @EqualsAndHashCode.Exclude @ToString.Exclude private Set<Product> products = new HashSet<>();
 }
