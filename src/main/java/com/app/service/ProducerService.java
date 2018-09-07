@@ -17,13 +17,15 @@ import java.util.stream.Collectors;
 @Service
 public class ProducerService {
 
-    @Autowired
     private ProducerRepository producerRepository;
-    @Autowired
     private ProductRepository productRepository;
-
-    @Autowired
     private ModelMapper modelMapper;
+
+    public ProducerService(ProducerRepository producerRepository, ProductRepository productRepository, ModelMapper modelMapper) {
+        this.producerRepository = producerRepository;
+        this.productRepository = productRepository;
+        this.modelMapper = modelMapper;
+    }
 
     public ProducerDto getProducer(Long id) {
         return producerRepository.findById(id).map(modelMapper::fromProducerToProducerDto).orElseThrow(() -> new ProducerNotFoundException("Producer with id = [" + id + "] doesn't exist"));

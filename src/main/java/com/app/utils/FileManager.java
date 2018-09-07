@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileManager {
+
     public static String getCatalogPath() {
         final String IMG_PATH = "\\src\\main\\resources\\static\\img\\";
         return System.getProperty("user.dir") + IMG_PATH;

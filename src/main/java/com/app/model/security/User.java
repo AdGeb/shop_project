@@ -18,9 +18,12 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    private String userName;
+    private String username;
+    private String email;
     private String password;
+    @Transient
     private String passwordConfirmation;
+    @Enumerated(EnumType.STRING)
     private Role role;
     private boolean enabled;
 }

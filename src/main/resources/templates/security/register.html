@@ -2,27 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>REGISTER</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
 </head>
 <body>
-<div th:replace="fragments/header">HEADER</div>
-<br/>
 <div class="container">
+    <div th:replace="fragments/header">HEADER</div>
     <div class="row mt-5 p-3">
         <div class="col-xl-8 offset-xl-2">
             <form th:action="@{/security/register}" method="post" th:object="${user}">
                 <div class="form-group">
-                    <label class="h2" for="userName">Username</label>
-                    <input id="userName" type="text" class="form-control" th:field="*{userName}"/>
+                    <label class="h2" for="username">Username</label>
+                    <input id="username" type="text" class="form-control" th:field="*{username}"/>
+                </div>
+                <div class="form-group">
+                    <label class="h2" for="email">Email</label>
+                    <input id="email" type="email" class="form-control" th:field="*{email}"/>
                 </div>
                 <div class="form-group">
                     <label class="h2" for="password">password</label>
-                    <input id="password" type="text" class="form-control" th:field="*{password}"/>
+                    <input id="password" type="password" class="form-control" th:field="*{password}"/>
                 </div>
                 <div class="form-group">
                     <label class="h2" for="passwordConfirmation">password confirmation</label>
-                    <input id="passwordConfirmation" type="text" class="form-control" th:field="*{passwordConfirmation}"/>
+                    <input id="passwordConfirmation" type="password" class="form-control" th:field="*{passwordConfirmation}"/>
                 </div>
                 <div class="form-group">
                     <label class="h2" for="role">Roles</label>
