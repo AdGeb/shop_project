@@ -3,19 +3,25 @@ package com.app.controller;
 import com.app.exceptions.PasswordConfirmationException;
 import com.app.model.Role;
 import com.app.model.security.User;
+import com.app.security.events.RegistrationEventData;
 import com.app.service.UserService;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/security")
 public class UserController {
 
     private UserService userService;
+    private ApplicationEventPublisher applicationEventPublisher;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ApplicationEventPublisher applicationEventPublisher) {
         this.userService = userService;
+        this.applicationEventPublisher = applicationEventPublisher;
     }
 
 
@@ -27,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String productAddPost(@ModelAttribute User user) {
+    public String productAddPost(@ModelAttribute User user, HttpServletRequest request) {
         try {
             verifyPasswordConfirmation(user);
         } catch (PasswordConfirmationException e) {
@@ -35,6 +41,11 @@ public class UserController {
             return "redirect:/security/register";
         }
         userService.addUser(user);
+
+        // wysylamy event dzieki ktoremu zostanie wyslany mail
+        final String URL = "http://" + request.getServerName() + ":" + request.getServerPort() + "/" + request.getContextPath();
+        applicationEventPublisher.publishEvent(new RegistrationEventData(URL, user));
+
         return "redirect:/";
     }
 
@@ -61,6 +72,12 @@ public class UserController {
         if (!user.getPassword().equals(user.getPasswordConfirmation())) {
             throw new PasswordConfirmationException("WRONG PASSWORD CONFIRMATION!");
         }
+    }
+
+    @GetMapping("/registrationConfirm")
+    public String registrationConfirm(@RequestParam String token) {
+        userService.registrationConfirm(token);
+        return "redirect:/login";
     }
 
 

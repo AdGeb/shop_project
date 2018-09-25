@@ -54,7 +54,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/producers/**").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/products/**").hasRole("ADMIN")
-                .antMatchers("/", "/security/register", "/webjars/**").permitAll()
+                .antMatchers("/", "/security/register", "/webjars/**", "/security/registrationConfirm").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

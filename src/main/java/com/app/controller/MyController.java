@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MyController {
     @GetMapping("/")
     public String home() {
-        return "main";
+        return "index";
     }
 
     @GetMapping("/user")
@@ -26,9 +26,6 @@ public class MyController {
         model.addAttribute("age", age);
         return "params1";
     }
-
-    @GetMapping("/home")
-    public String homePage() {return "main";}
 
     // http:localhost:8080/params1/ADAM/20
     @GetMapping("/params2/{name}/{age}")

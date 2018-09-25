@@ -17,11 +17,6 @@ public class ProducerController {
         this.producerService = producerService;
     }
 
-    @GetMapping("/home")
-    public String homePage() {
-        return "main";
-    }
-
     @GetMapping("/add")
     public String producerAddGet(Model model) {
         model.addAttribute("producer", new ProducerDto());
